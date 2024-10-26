@@ -7,7 +7,7 @@ export function NavigationMenu() {
   return (
     <div className="fixed bottom-0 w-full flex h-14 bg-white items-center justify-between px-4 md:px-10 lg:px-16 text-black ">
       <Logo />
-      <Link href="/gallery">
+      <Link href="/canvas">
         <Brush />
       </Link>
       <Link href="/gallery">

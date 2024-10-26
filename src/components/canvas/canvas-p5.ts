@@ -1,18 +1,21 @@
 import { P5CanvasInstance } from "react-p5-wrapper";
 import P5 from "p5";
 
-const sketch = (p5: P5CanvasInstance) => {
+const p5Canvas = (p5: P5CanvasInstance, color: string) => {
   let shadowLayer: P5.Graphics;
   let lineLayer: P5.Graphics;
   let prevMouseX: number;
   let prevMouseY: number;
+  let picker: P5.ColorPicker;
 
   p5.setup = () => {
-    p5.createCanvas(400, 400);
-    shadowLayer = p5.createGraphics(400, 400);
-    lineLayer = p5.createGraphics(400, 400);
+    p5.createCanvas(800, 800);
+    shadowLayer = p5.createGraphics(800, 800);
+    lineLayer = p5.createGraphics(800, 800);
     prevMouseX = p5.mouseX;
     prevMouseY = p5.mouseY;
+    picker = p5.createColorPicker("deeppink");
+    picker.position(200, 100);
   };
 
   p5.draw = () => {
@@ -27,7 +30,7 @@ const sketch = (p5: P5CanvasInstance) => {
 
 
     // 線を描画
-    lineLayer.stroke(255, 100, 0); // 赤色
+    lineLayer.stroke(picker.color()); // 赤色
     lineLayer.strokeWeight(3);
     lineLayer.line(prevMouseX, prevMouseY, p5.mouseX, p5.mouseY);
 
@@ -43,4 +46,4 @@ const sketch = (p5: P5CanvasInstance) => {
   };
 };
 
-export default sketch;
+export default p5Canvas;
