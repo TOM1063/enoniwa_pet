@@ -5,6 +5,14 @@ import Link from "next/link";
 import { useState } from "react";
 export default function CanvasPage() {
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const [data, setData] = useState<string[]>([]);
+  const upload = () => {
+    console.log("upload");
+  };
+  const getData = (data: string[]) => {
+    console.log("getData");
+    setData(data);
+  };
   return (
     <div className="flex justify-center items-center h-[calc(100vh-3rem)] w-full bg-gray-100">
       <div className="rounded-lg bg-white shadow-lg">
@@ -25,11 +33,11 @@ export default function CanvasPage() {
               onChange={(e) => console.log(e.target.value)} // Handle color change
             />
           )} */}
-          <button className="text-sm font-bold text-gray-500">
+          <button className="text-sm font-bold text-gray-500" onClick={() => {upload()}}>
             <CheckIcon className="w-6 h-6" />
           </button>
         </div>
-        <Canvas />
+        <Canvas getData={getData} />
       </div>
     </div>
   );
