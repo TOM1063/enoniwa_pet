@@ -1,20 +1,32 @@
 "use client";
-import dynamic from "next/dynamic";
 import React from "react";
-import { P5WrapperProps } from "react-p5-wrapper";
-import sketch from "./sketch";
+import { useRef, useEffect } from "react";
+import { Preview } from "./preview-p5";
+export function PreviewComponent() {
+  const canvasRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    let instance: Preview | null = null;
+      console.log("canvasref?")
+    if (canvasRef.current) {
+      console.log("instancing canvas on", canvasRef.current);
+      instance = new Preview(canvasRef.current);
+      console.log("instance", instance);
+      return () => {
+        if (instance) {
+          instance.destroy();
+          instance = null;
+          console.log("destroyed");
+        }
+      };
+    }
+    else {
+      console.log("no canvas ref");
+    } 
+  },[]);
 
-const ReactP5Wrapper = dynamic(
-  () => import("react-p5-wrapper").then((mod) => mod.ReactP5Wrapper as any),
-  {
-    ssr: false,
-  }
-) as unknown as React.NamedExoticComponent<P5WrapperProps>;
-
-export function Preview() {
   return (
     <>
-      <ReactP5Wrapper sketch={sketch} />
+      <div ref={canvasRef} />
     </>
   );
 }

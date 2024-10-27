@@ -8,7 +8,7 @@ export function CanvasComponent() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
   const [instance, setInstance] = useState<Canvas | null>(null);
 
-  const uploadData = async (data: any) => {
+  const uploadData = async (data: string) => {
     console.log("uploading data", data);
   }
 
@@ -17,7 +17,7 @@ export function CanvasComponent() {
     await instance?.uploadData();
   }
 
-  const uploadDataCallback = async (data: any) => {
+  const uploadDataCallback = async (data: string) => {
       console.log("uploading data", data);
       await uploadData(data);
   }

@@ -1,4 +1,4 @@
-
+"use client";
 import { ClerkProvider } from "@clerk/nextjs";
 // import { jaJP } from "@clerk/localizations";
 import "../styles/globals.css";

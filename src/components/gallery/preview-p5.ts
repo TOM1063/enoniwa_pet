@@ -1,6 +1,6 @@
 import P5 from "p5";
 
-class Canvas {
+class Preview {
   shadowLayer: P5.Graphics | null;
   lineLayer: P5.Graphics | null;
   prevMouseX: number;
@@ -8,8 +8,7 @@ class Canvas {
   picker: P5.Element | null;
   p5: P5;
   container: HTMLElement;
-  uploadDataCallback: (data: string) => void;
-  constructor( container: HTMLElement, uploadData: (data: string) => void) {
+  constructor( container: HTMLElement) {
       this.prevMouseX = 0;
       this.prevMouseY = 0;
       this.picker = null;
@@ -17,7 +16,6 @@ class Canvas {
       this.lineLayer = null;
       this.container = container;
       this.p5 = new P5(this.sketch, container);
-      this.uploadDataCallback = uploadData;
   }
   sketch = (p5: P5) => {
       p5.setup = () => {
@@ -67,9 +65,6 @@ class Canvas {
       p5.fill(255, 0, 0);
       p5.circle(100, 100, 10);
   }
-  uploadData() {
-      this.uploadDataCallback("test");
-  }
   destroy() {
       if (this.shadowLayer) {
             this.shadowLayer.remove();
@@ -84,4 +79,4 @@ class Canvas {
     }
 }
 
-export {Canvas};
+export {Preview};
