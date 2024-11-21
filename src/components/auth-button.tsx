@@ -5,9 +5,7 @@ import Link from "next/link";
 
 export function AuthButton({
       text = "Sign in",
-      className,
-      variant = "default",
-      children,
+      className
 }: {
       text?: string;
       className?: string;
